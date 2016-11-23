@@ -1,0 +1,20 @@
+{
+  "name": "sassl",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-watch": "^4.3.10"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "description": ""
+}

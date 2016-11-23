@@ -1,10 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-a
-</body>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+        <meta name="viewport"
+              content="width=device-width,target-densitydpi=medium-dpi,minimum-scale=1.0,maximum-scale=1.0"/>
+        <meta name="format-detection" content="telephone=no"/>
+		<link rel="stylesheet" href="./css/index.css" />
+		<title></title>
+	</head>
+	<body>
+		<h1>SASS RunAway</h1>
+		<h2>outSide</h2>
+		<div class="divBox">
+			<h2>From Div Inside</h2>
+			<ul>
+				<li>list1</li>
+				<li>list2</li>
+				<li>list3</li>
+			</ul>
+		</div>
+		<div class="yanConfrim">
+			<div class="yanCOnfrimMask"></div>
+			<div class="yanConfrimBox">
+				<div class="yanConfrimTitle">
+					<h3>消息</h3>
+					<span><a href="javascript:;"></a></span>
+				</div>
+				<div class="yanConfrimBody">
+					<p>确定噼里啪啦，噼里啪啦，噼里啪啦！</p>
+				</div>
+				<div class="yanConfrimFoot">
+					<a class="okBtn" href="javascript:;">确认</a>
+					<a class="cancelBtn" href="javascript:;">取消</a>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
+*{margin:0;padding:0;}
+$color:#333 #eee #F8F8F8;
+/*询问弹窗*/
+.yanConfrim{
+  display: none;
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+
+  .yanCOnfrimMask{
+    background:#000;
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    opacity:.3;
+    filter: alpha(opacity=30);
+  }
+
+  .yanConfrimBox{
+    position: absolute;
+    left:50%;
+    top:50%;
+    border:1px solid nth($color,2);
+    box-shadow: 1px 1px 50px rgba(0,0,0,.3);
+    background: #fff;
+
+    .yanConfrimTitle{
+      overflow: hidden;
+      border-bottom:1px solid nth($color,2);
+      background:nth($color,3);
+      h3{
+        color:nth($color,1);
+        float:left;
+      }
+      span{
+        float:right;
+        text-align: right;
+        a{
+          color:nth($color,1);
+          display:inline-block;
+          text-decoration: none;
+          background: url(../images/icon.png) no-repeat;
+          background-position: 0 -40px;
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+    .yanConfrimBody{
+      p{
+        color:nth($color,1);
+        display:inline-block;
+        vertical-align: middle;
+      }
+    }
+    .yanConfrimFoot{
+      text-align: right;
+      a{
+        border: 1px solid #dedede;
+        border-radius: 2px;
+        font-weight: 400;
+        cursor: pointer;
+        text-decoration: none;
+        display:inline-block;
+      }
+      a.okBtn{
+        border-color: #4898d5;
+        background-color: #2e8ded;
+        color: #fff;
+      }
+      a.cancelBtn{
+        background-color: #f1f1f1;
+        color: #333;
+      }
+    }
+  }
+
+  //pc
+  @media all and (min-width:600px){
+    .yanConfrimBox{
+      width:300px;
+      min-height:150px;
+      margin:-90px 0 0 -150px;
+    }
+    .yanConfrimTitle{
+      line-height:26px;
+      margin:5px 0px;
+      padding-bottom:5px;
+      h3{
+        font-size:14px;
+        margin-left:10px;
+      }
+      span{
+        width:50px;
+        padding-right:10px;
+        a{
+
+        }
+      }
+    }
+    .yanConfrimBody{
+      padding:15px 20px;
+      min-height:35px;
+      p{
+        font-size:14px;
+      }
+    }
+    .yanConfrimFoot{
+      padding:0 10px 10px 0;
+      a{
+        font-size:14px;
+        height: 28px;
+        line-height: 28px;
+        margin: 0 6px;
+        padding: 0 15px;
+        opacity:.9;
+      }
+      a:hover{
+        opacity: 1;
+      }
+    }
+  }
+
+  //mobile
+  @media all and (max-width:600px){
+    .yanConfrimBox{
+      width:300px;
+      min-height:150px;
+      margin: -90px 0 0 -150px;
+    }
+    .yanConfrimTitle{
+      line-height:26px;
+      margin:5px 0px;
+      padding-bottom:5px;
+      h3{
+        font-size:14px;
+        margin-left:10px;
+      }
+      span{
+        width:50px;
+        padding-right:10px;
+        a{
+
+        }
+      }
+    }
+    .yanConfrimBody{
+      padding:15px 20px;
+      min-height:35px;
+      p{
+        font-size:14px;
+      }
+    }
+    .yanConfrimFoot{
+      padding:0 10px 10px 0;
+      a{
+        font-size:14px;
+        height: 28px;
+        line-height: 28px;
+        margin: 0 6px;
+        padding: 0 15px;
+        opacity:.9;
+      }
+      a:hover{
+        opacity: 1;
+      }
+    }
+  }
+}
+/*提示弹窗*/
+.yanMsg{
+  display: none;
+  position: fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  .yanMsgMask{
+    position: absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background: #000;
+    opacity:.0;
+    filter: alpha(opacity=0);
+  }
+  .yanMsgBox{
+    position: absolute;
+    left:50%;
+    top:50%;
+    width:150px;
+    color:#fff;
+    padding: 10px 10px;
+    text-align: center;
+    margin:-20px -85px;
+    .yanMsgBoxBg{
+      position: absolute;
+      left:0;
+      top:0;
+      width:100%;
+      height:100%;
+      background: #000;
+      opacity:.7;
+      filter: alpha(opacity=70);
+    }
+    p{
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      line-height: 20px;
+      display: inline-block;
+    }
+  }
+}
