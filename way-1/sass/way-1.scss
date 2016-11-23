@@ -1,0 +1,107 @@
+$color:#c99 !default;//默认值
+$color:#f40;//单值
+$colors:#ccc #6f60f6 #c9c900;//数组型 加"()"或"，"则是多维数组
+$font-size:(s1:2px,s2:20px,s3:30px);//json型
+$keyColor:color;
+$borerType:solid;
+$arrow:top;
+.box{
+    color:$color;
+    h1{
+        #{$keyColor}:nth($colors,1);
+        border:#{map-get($font-size,s1)} #{$borerType} #{nth($colors,2)};//组合型变量样例
+        border-#{$arrow}:10px dashed #{nth($colors,3)};//组合型变量样例
+    }
+    a{
+        color:nth($colors,2);
+        font-size:map_get($font-size,s3);
+        text-decoration:none;
+        &:hover{
+            color:nth($colors,3);
+        }
+    }
+}
+
+//mixin
+@mixin styleMixin($border:1px dashed pink,$color:pink){
+    border:$border;
+    color:$color;
+}
+.box2{
+    h1{
+        @include styleMixin
+    }
+    h2{
+        @include styleMixin(5px solid #669)
+    }
+    h3{
+        @include styleMixin($color:#f69)
+    }
+    h4{
+        @include styleMixin(1px solid #099,#0c0)
+    }
+    h5{
+        @include styleMixin($border:20px solid yellow,$color:blue)
+    }
+}
+
+//自定义Function
+@function diyYan($number){
+    @return unquote($number+'px');
+}
+
+//Function
+
+//颜色加深|减淡
+$box3Color:#069;
+.box3{
+    span{
+        background:$box3Color;
+        font-size:diyYan(40);
+        display:inline-block;
+        padding:diyYan(20);
+        border-radius: diyYan(5);
+        &:hover{
+            background: darken($box3Color,10%);//颜色加深
+            color:#fff;
+        }
+        &:active{
+            background: lighten($box3Color,5%);//颜色减淡
+        }
+    }
+}
+
+//条件判断
+$type:c;
+.box4{
+    h1{
+        @if $type == a {
+            color:yellowgreen;
+        } @else if $type == b {
+            color:red;
+        } @else {
+            color:blueviolet;
+        }
+    }
+    h2{
+        color:if(false,#c9c900,#00cc00)
+    }
+}
+
+//for循环
+$list:one two three;
+.box5{
+    @for $i from 1 through 3{
+        .title-#{nth($list,$i)}{
+            font-size:30 * ( $i + 1 ) + px;
+        }
+    }
+}
+//each循环
+.box5{
+    @each $name in $list{
+        .title-#{$name}{
+            color:darken(red,10%);
+        }
+    }
+}
